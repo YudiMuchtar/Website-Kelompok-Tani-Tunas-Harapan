@@ -10,6 +10,7 @@
   $$('img[data-local]').forEach((img) => {
     img.addEventListener('error', function swap() {
       img.removeEventListener('error', swap);
+      img.addEventListener('error', () => img.classList.add('is-missing'), { once: true });
       img.src = img.dataset.local;
     });
   });

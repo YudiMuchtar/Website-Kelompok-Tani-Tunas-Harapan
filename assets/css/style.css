@@ -708,3 +708,7 @@ html:not(.js) body.is-loading { overflow: auto; }
   .manifesto__text .w { opacity: 1; }
 }
 @media (max-width: 620px) { .cinema__kicker { font-size: 10.5px; letter-spacing: .16em; } }
+
+/* Jika foto tidak tersedia: sembunyikan gambar rusak, tampilkan gradasi lanskap */
+img.is-missing { visibility: hidden; }
+.mask, .cinema__frame { background: radial-gradient(circle at 70% 25%, rgba(255, 217, 138, .75), transparent 45%), linear-gradient(170deg, #8fd3cf 0%, #cfe3a8 35%, #6da447 60%, #2f5f2c 100%); }
