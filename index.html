@@ -562,7 +562,15 @@
   <script src="assets/js/main.js"></script>
   <script type="module">
     import { initHero } from './assets/js/hero3d.js';
-    const api = initHero(document.getElementById('heroCanvas'));
+    const video = (window.TUNAS_CONFIG || {}).heroVideo;
+    const api = video ? null : initHero(document.getElementById('heroCanvas'));
+    if (video) {
+      const v = Object.assign(document.createElement('video'), { src: video, muted: true, loop: true, autoplay: true, playsInline: true });
+      v.className = 'hero__video';
+      v.setAttribute('aria-hidden', 'true');
+      document.getElementById('heroCanvas').replaceWith(v);
+      document.documentElement.classList.add('has-webgl');
+    }
     if (api) {
       document.documentElement.classList.add('has-webgl');
       window.__hero = api;
