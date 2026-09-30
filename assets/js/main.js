@@ -6,6 +6,14 @@
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const hasGsap = typeof window.gsap !== 'undefined';
 
+  // Foto dari CDN; jika gagal dimuat, pakai salinan lokal (assets/img)
+  $$('img[data-local]').forEach((img) => {
+    img.addEventListener('error', function swap() {
+      img.removeEventListener('error', swap);
+      img.src = img.dataset.local;
+    });
+  });
+
   if (!hasGsap) {
     // Tanpa GSAP: tampilkan semua konten apa adanya
     document.documentElement.classList.remove('js');
@@ -271,6 +279,28 @@
   });
   mm.add('(max-width: 820px)', () => { batchIn('.mcard'); });
 
+
+  /* ---------- Sinema lanskap: bingkai meluas ---------- */
+  mm.add('(prefers-reduced-motion: no-preference)', () => {
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: '.cinema', start: 'top top', end: '+=140%', pin: '.cinema__pin', scrub: 0.8, anticipatePin: 1, refreshPriority: 2 },
+    });
+    tl.fromTo('.cinema__frame', { clipPath: 'inset(18% 22% 18% 22% round 36px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none', duration: 1 }, 0)
+      .fromTo('.cinema__frame img', { scale: 1.25 }, { scale: 1, ease: 'none', duration: 1.2 }, 0)
+      .from('.cinema__kicker', { y: 30, opacity: 0, duration: 0.3 }, 0.35)
+      .from('.cinema__title span', { yPercent: 60, opacity: 0, rotateX: -40, transformPerspective: 800, stagger: 0.12, duration: 0.45 }, 0.4);
+
+    /* Parallax foto dalam bingkai */
+    $$('.mask img').forEach((img) => {
+      gsap.fromTo(img, { yPercent: -7 }, { yPercent: 7, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+    $$('.mask').forEach((m) => {
+      gsap.from(m, { clipPath: 'inset(100% 0% 0% 0% round 32px)', duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: m, start: 'top 88%' } });
+    });
+  });
+  mm.add('(prefers-reduced-motion: reduce)', () => { document.documentElement.classList.add('no-pin'); });
+  batchIn('.showcase figcaption, .trustbar li');
+
   /* ---------- Alur: garis tumbuh ---------- */
   const path = $('#flowPath');
   if (path) {
@@ -332,5 +362,8 @@
 
   $('#year').textContent = new Date().getFullYear();
 
-  window.addEventListener('load', () => ScrollTrigger.refresh());
+  // Pin dibuat tidak berurutan; urutkan sesuai posisi di halaman
+  ScrollTrigger.sort();
+  ScrollTrigger.refresh();
+  window.addEventListener('load', () => { ScrollTrigger.sort(); ScrollTrigger.refresh(); });
 })();

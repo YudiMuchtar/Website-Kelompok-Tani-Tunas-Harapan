@@ -628,6 +628,75 @@ html:not(.js) body.is-loading { overflow: auto; }
 .footer__big { margin: 30px 0 -0.22em; font-family: var(--serif); font-weight: 600; font-size: clamp(56px, 13vw, 220px); line-height: 1; letter-spacing: -.04em; text-align: center; white-space: nowrap; background: linear-gradient(180deg, rgba(124, 192, 74, .45), rgba(124, 192, 74, 0) 85%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 @media (max-width: 800px) { .footer__grid { grid-template-columns: 1fr; } .footer__nav { justify-content: flex-start; } }
 
+
+/* ==========================================================
+   Lapisan premium: lencana hero, trust bar, sinema, foto
+   ========================================================== */
+.photo-note { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; background: rgba(15, 30, 18, .55); color: rgba(247, 241, 227, .85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+.hero__badge { position: absolute; z-index: 2; right: calc(var(--gutter) + 40px); top: 118px; width: 132px; height: 132px; display: grid; place-items: center; }
+.hero__badge svg { position: absolute; inset: 0; animation: spin 22s linear infinite; }
+.hero__badge text { font: 700 13.5px var(--sans); letter-spacing: .22em; fill: rgba(255, 244, 214, .92); }
+.hero__badge img { width: 50px; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .35)); }
+.hero__badge::before { content: ''; position: absolute; inset: 22px; border-radius: 50%; background: rgba(20, 44, 22, .35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25); }
+@media (max-width: 820px) { .hero__badge { display: none; } }
+
+.trustbar { background: var(--paper); border-bottom: 1px solid var(--line); }
+.trustbar__inner { display: flex; align-items: center; gap: 28px; padding: 22px 0; }
+.trustbar__label { flex: none; font-size: 11.5px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); max-width: 150px; line-height: 1.4; }
+.trustbar ul { list-style: none; margin: 0; padding: 0; flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.trustbar li { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-left: 1px solid var(--line); }
+.trustbar li .ic { width: 26px; height: 26px; color: var(--leaf); }
+.trustbar li span { display: flex; flex-direction: column; font-size: 12.5px; color: var(--muted); line-height: 1.3; }
+.trustbar li b { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--forest); }
+@media (max-width: 1000px) {
+  .trustbar__inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .trustbar__label { max-width: none; }
+  .trustbar ul { grid-template-columns: repeat(2, 1fr); width: 100%; }
+  .trustbar li { border-left: 0; padding: 8px 0; }
+}
+
+.cinema { position: relative; background: var(--forest); }
+.cinema__pin { position: relative; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.cinema__frame { position: absolute; inset: 0; clip-path: inset(18% 22% 18% 22% round 36px); will-change: clip-path; }
+.cinema__frame img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.25); will-change: transform; }
+.cinema__shade { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(12, 28, 14, .15), rgba(12, 28, 14, .7)); }
+.cinema__text { position: relative; z-index: 2; text-align: center; color: var(--cream); padding: 0 var(--gutter); }
+.cinema__kicker { font-size: 12px; font-weight: 800; letter-spacing: .3em; text-transform: uppercase; color: var(--sun-2); margin-bottom: 18px; }
+.cinema__title { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 7vw, 110px); line-height: 1; letter-spacing: -.03em; text-shadow: 0 8px 40px rgba(0, 0, 0, .45); }
+.cinema__title span { display: inline-block; }
+.cinema__title em { color: var(--sun-2); font-weight: 400; }
+.cinema__pin > .photo-note { position: absolute; right: var(--gutter); bottom: 24px; z-index: 2; }
+.no-pin .cinema__frame { clip-path: none; }
+
+.manifesto__grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
+.manifesto__photo { margin: 0; }
+.mask { position: relative; overflow: hidden; border-radius: 32px; box-shadow: var(--shadow); background: var(--sand); }
+.mask img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.18); will-change: transform; }
+.manifesto__photo .mask { aspect-ratio: 4 / 5; }
+.manifesto__photo figcaption { margin-top: 14px; font-size: 14px; color: var(--muted); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.manifesto__photo .photo-note, .showcase__note { background: var(--sand); color: var(--soil); backdrop-filter: none; }
+@media (max-width: 900px) { .manifesto__grid { grid-template-columns: 1fr; } .manifesto__photo { max-width: 460px; } }
+
+.showcase { position: relative; display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 22px; align-items: start; margin-bottom: clamp(70px, 9vw, 120px); }
+.showcase__item { margin: 0; }
+.showcase__item--a .mask { aspect-ratio: 1; }
+.showcase__item--b { margin-top: 90px; }
+.showcase__item--b .mask { aspect-ratio: 4 / 5; }
+.showcase__item--c { margin-top: 30px; }
+.showcase__item--c .mask { aspect-ratio: 4 / 3.4; }
+.showcase figcaption { margin-top: 14px; font-size: 14.5px; color: var(--muted); }
+.showcase figcaption b { display: block; font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--forest); }
+.showcase__note { position: absolute; left: 0; bottom: -40px; }
+@media (max-width: 900px) {
+  .showcase { grid-template-columns: 1fr 1fr; }
+  .showcase__item--b { margin-top: 50px; }
+  .showcase__item--c { grid-column: 1 / -1; margin-top: 0; }
+}
+
+.cta__photo { position: absolute; inset: 0; opacity: .22; mix-blend-mode: luminosity; }
+.cta__photo img { width: 100%; height: 100%; object-fit: cover; }
+
 /* ---------- Status awal animasi (hanya jika JS aktif) ---------- */
 .js .reveal-up { opacity: 0; transform: translateY(30px); }
 .js .hero__title .line > span { transform: translateY(110%); }
@@ -638,3 +707,4 @@ html:not(.js) body.is-loading { overflow: auto; }
   .js .hero__title .line > span { transform: none; }
   .manifesto__text .w { opacity: 1; }
 }
+@media (max-width: 620px) { .cinema__kicker { font-size: 10.5px; letter-spacing: .16em; } }

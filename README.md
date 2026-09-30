@@ -24,6 +24,17 @@ perusahaan swasta (CSR), dan lembaga donor** yang ingin menyalurkan hibah atau b
 Data diambil dari Berita Acara Revitalisasi, AD/ART, dan Data Kelompok Tani (2 Juli 2024).
 Data pribadi (NIK, No. KK, NIP) **sengaja tidak ditampilkan**.
 
+## Foto ilustrasi (Gamma AI)
+
+Lima foto ilustrasi (lanskap sawah, tangan & tunas, musyawarah petani, hasil panen, ternak & kolam)
+dibuat dengan Gamma AI dan dimuat dari `cdn.gamma.app`. Setiap foto diberi label **"Ilustrasi"**
+agar tidak disangka dokumentasi asli.
+
+- Sebaiknya unduh foto-foto itu ke `assets/img/` dengan nama `photo-landscape.webp`, `photo-hands.webp`,
+  `photo-meeting.webp`, `photo-harvest.webp`, `photo-farm.webp`. Jika CDN gagal dimuat, situs otomatis
+  memakai salinan lokal tersebut (atribut `data-local`).
+- Idealnya, ganti dengan **foto asli** kegiatan kelompok — calon pemberi hibah akan lebih percaya.
+
 ## Sebelum dipublikasikan
 
 Isi kontak resmi di `assets/js/config.js`:
