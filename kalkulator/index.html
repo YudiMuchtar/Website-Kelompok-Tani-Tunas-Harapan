@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kalkulator Modern</title>
+  <meta name="description" content="Kalkulator modern - Kelompok Tani Tunas Harapan" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="calculator" aria-label="Kalkulator">
+      <header class="topbar">
+        <span class="brand">Kalkulator</span>
+        <div class="actions">
+          <button class="icon-btn" id="historyToggle" type="button" aria-label="Riwayat" title="Riwayat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v4l3 2M3.05 11a9 9 0 1 1 .5 4M3 4v5h5"/></svg>
+          </button>
+          <button class="icon-btn" id="themeToggle" type="button" aria-label="Ganti tema" title="Ganti tema">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="display" aria-live="polite">
+        <div class="expression" id="expression"></div>
+        <div class="result" id="result" title="Klik untuk menyalin">0</div>
+      </div>
+
+      <div class="keys" id="keys">
+        <button class="key fn" data-action="clear">AC</button>
+        <button class="key fn" data-value="(">(</button>
+        <button class="key fn" data-value=")">)</button>
+        <button class="key op" data-value="÷">÷</button>
+
+        <button class="key" data-value="7">7</button>
+        <button class="key" data-value="8">8</button>
+        <button class="key" data-value="9">9</button>
+        <button class="key op" data-value="×">×</button>
+
+        <button class="key" data-value="4">4</button>
+        <button class="key" data-value="5">5</button>
+        <button class="key" data-value="6">6</button>
+        <button class="key op" data-value="−">−</button>
+
+        <button class="key" data-value="1">1</button>
+        <button class="key" data-value="2">2</button>
+        <button class="key" data-value="3">3</button>
+        <button class="key op" data-value="+">+</button>
+
+        <button class="key fn" data-value="%">%</button>
+        <button class="key" data-value="0">0</button>
+        <button class="key" data-value=".">,</button>
+        <button class="key equals" data-action="equals">=</button>
+
+        <button class="key fn wide" data-action="negate">±</button>
+        <button class="key fn wide" data-action="backspace" aria-label="Hapus">⌫</button>
+      </div>
+    </section>
+
+    <aside class="history" id="history" aria-label="Riwayat perhitungan">
+      <header class="history-head">
+        <span>Riwayat</span>
+        <button class="text-btn" id="clearHistory" type="button">Hapus semua</button>
+      </header>
+      <ul class="history-list" id="historyList"></ul>
+      <p class="history-empty" id="historyEmpty">Belum ada perhitungan.</p>
+    </aside>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
